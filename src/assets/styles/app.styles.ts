@@ -36,3 +36,28 @@ export const SLogo = styled.img`
 export const SLink = styled.a`
   color: #61dafb;
 `
+export const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: #BF4F74;
+  text-transform: uppercase;
+`;
+export const StyledCounter = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin:0 auto;
+    padding: 20px;
+`;
+export const TimerStyled= styled.span`
+  font-size: 1.5em;
+  text-align: center;
+  color: #BF4F74;
+`;
+
+export const ContainerItems = styled.div`
+    display: flex;    
+    gap: 35px; 
+    align-items: flex-start;   
+`;

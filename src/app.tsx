@@ -1,13 +1,13 @@
 import React from 'react';
-// import logo from './assets/icons/logo.svg';
-// import {SApp, SHeader, SLink, SLogo} from "./assets/styles/app.styles";
+import Countdown from './components/countDown/Countdown';
 import Timer from './components/timer/Timer';
 
 function App() {
     return (
-    
-    <Timer/>
-    
+    <>
+        <Timer/>
+        <Countdown/>
+    </>
     );
 }
 
