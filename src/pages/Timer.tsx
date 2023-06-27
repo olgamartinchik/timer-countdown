@@ -2,7 +2,7 @@ import React, {useState, useCallback, useMemo, useRef} from 'react';
 import Button from '@mui/material/Button';
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Title, StyledCounter, TimerStyled, ContainerItems } from '../../assets/styles/app.styles';
+import { Title, StyledCounter, TimerStyled, ContainerItems } from '../assets/styles/app.styles';
 
 
 

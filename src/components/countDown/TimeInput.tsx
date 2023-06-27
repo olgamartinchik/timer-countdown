@@ -36,7 +36,7 @@ const TimeInput: React.FunctionComponent<PropType>  = ({minutes, seconds, time, 
 
     return (
         <div>
-            <p>Start time: {minutes}, {seconds}, {minutes*60+seconds}</p>
+            
             <ContainerItems>
                 <Input
                     value={minutes}

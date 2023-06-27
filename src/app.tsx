@@ -1,12 +1,21 @@
+
+
 import React from 'react';
-import Countdown from './components/countDown/Countdown';
-import Timer from './components/timer/Timer';
+import {Routes, Route} from 'react-router-dom'
+import Navigation from './components/Navigation';
+import Countdown from './pages/Countdown';
+import Timer from './pages/Timer';
 
 function App() {
     return (
     <>
-        <Timer/>
-        <Countdown/>
+    <Navigation/>
+    <Routes>
+        <Route path="/" element={<Timer/>}/>
+        <Route path="/countdown" element={<Countdown/>}/>
+    </Routes>
+        {/* <Timer/>
+        <Countdown/> */}
     </>
     );
 }

@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import { Title, StyledCounter } from '../../assets/styles/app.styles';
-import TimeInput from './TimeInput';
-import ProgressTime from './ProgressTime';
-import ButtonControl from './ButtonControl';
+import { Title, StyledCounter } from '../assets/styles/app.styles';
+import TimeInput from '../components/countDown/TimeInput';
+import ProgressTime from '../components/countDown/ProgressTime';
+import ButtonControl from '../components/countDown/ButtonControl';
 
 
 const Countdown = () => {
@@ -83,7 +83,7 @@ const Countdown = () => {
     return (
       
     <StyledCounter>
-        <Title>Countdown</Title> {time}
+        <Title>Countdown</Title> 
 
         <TimeInput minutes={minutes} seconds={seconds}  time={time} isPlay={isPlay} handleMinuteChange = {handleMinuteChange} handleSecondChange = {handleSecondChange} handleSliderChange={handleSliderChange}/>
         

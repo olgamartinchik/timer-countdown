@@ -8,7 +8,7 @@ type ProgressTimeProp = {
     seconds: number
 }
 const ProgressTime: React.FunctionComponent<ProgressTimeProp> = ({time, minutes, seconds}) => {
-    
+
     const getTimerFormat = useMemo (()=>{
         return (time: number) => {
             const minutes = Math.floor(time / 60);
@@ -21,10 +21,10 @@ const ProgressTime: React.FunctionComponent<ProgressTimeProp> = ({time, minutes,
         <Box sx={{ display: 'flex', flexDirection:'column', alignItems: 'center', gap:'30px', width: '50%' }}>
             <TimerStyled>{getTimerFormat(time)}</TimerStyled>
             <Box sx={{ width: '100%', mr: 1 }}>
-                <LinearProgress variant="determinate" value={time ? Math.round((((minutes*60+seconds) - time) /(minutes*60+seconds)) * 100) : 0} />
+                <LinearProgress variant="determinate" value={time ? Math.round((((minutes * 60 + seconds) - time) /(minutes * 60 + seconds)) * 100) : 0} />
             </Box>
             <Box sx={{ minWidth: 35 }}>
-                <Typography variant="body2" color="text.secondary">{`${time ? Math.round((((minutes*60+seconds) - time) / (minutes*60+seconds)) * 100) : 0}%`}</Typography>
+                <Typography variant="body2" color="text.secondary">{`${time ? Math.round((((minutes * 60 + seconds) - time) / (minutes * 60 + seconds)) * 100) : 0}%`}</Typography>
             </Box>
         </Box>
     )
