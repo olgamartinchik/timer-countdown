@@ -1,4 +1,4 @@
-import React, { useCallback} from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles';
 import { Slider } from '@mui/material';
@@ -19,54 +19,25 @@ const marks = [
     label: '60 min',
   },
 ];
-type PropType={
-  setTime:  (value: React.SetStateAction<number>) => void
-  setMinutes:  (value: React.SetStateAction<number>) => void
-  setSeconds:  (value: React.SetStateAction<number>) => void
+type PropType = {
   minutes: number
   seconds: number
   time: number
-  isPlay:boolean
+  isPlay: boolean
+  handleMinuteChange: (event: React.ChangeEvent<HTMLInputElement>)=> void
+  handleSecondChange: (event: React.ChangeEvent<HTMLInputElement>)=> void
+  handleSliderChange: (event: Event, newValue: number | number[]) => void
 }
 
 
-const TimeInput: React.FunctionComponent<PropType>  = ({setTime,setSeconds,setMinutes,minutes, seconds, time, isPlay}) => {
-    // const [minutes, setMinutes] = useState(0);
-    // const [seconds, setSeconds] = useState(0);
-   
+const TimeInput: React.FunctionComponent<PropType>  = ({minutes, seconds, time, isPlay, handleMinuteChange, handleSecondChange, handleSliderChange}) => {
     
-      const handleSliderChange = useCallback((event: Event, newValue: number | number[]) => {
-        // console.log('handleSliderChange',newValue)
-        const minute = Math.floor(+newValue / 60);
-        const second = (+newValue % 60) ;
-        setMinutes(minute);
-        setSeconds(second);
-        setTime(minute*60+second)
-      }, [minutes, seconds]);
-
-      const handleMinuteChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        let value = parseInt(event.target.value);
-        // console.log('handleMinuteChange',value)
-        value = Math.min(value, 720);
-        setMinutes(value);
-        setTime(seconds+value*60)
-      }, [minutes,seconds]);
-
-      const handleSecondChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-        let value = parseInt(event.target.value);
-        // console.log('handleSecondChange',value)
-        value = Math.min(value, 59); 
-        setSeconds(value);
-        setTime(minutes*60+value)
-      }, [seconds, minutes]);
-   
       
 
     return (
         <div>
             <p>Start time: {minutes}, {seconds}, {minutes*60+seconds}</p>
             <ContainerItems>
-             
                 <Input
                     value={minutes}
                     size="small"
@@ -113,9 +84,7 @@ const TimeInput: React.FunctionComponent<PropType>  = ({setTime,setSeconds,setMi
 
 }
 // TimeInput.propTypes = {  
-//   setTime:  PropTypes.func,
-//   setMinutes: PropTypes.func,
-//   setSeconds:  PropTypes.func,
+
 //   minutes: PropTypes.number,
 //   seconds: PropTypes.number,
 //   time: PropTypes.number,

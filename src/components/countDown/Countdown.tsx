@@ -1,13 +1,8 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import { Title, StyledCounter, ContainerItems, TimerStyled } from '../../assets/styles/app.styles';
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Box, LinearProgress, Typography } from '@mui/material';
-
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import { Title, StyledCounter } from '../../assets/styles/app.styles';
 import TimeInput from './TimeInput';
-// import ProgressTime from './ProgressTime';
-// import ButtonControl from './ButtonControl';
-import { Button,  } from '@mui/material';
+import ProgressTime from './ProgressTime';
+import ButtonControl from './ButtonControl';
 
 
 const Countdown = () => {
@@ -56,43 +51,46 @@ const Countdown = () => {
         setMinutes(0)
         setSeconds(0)
         setIsPlay(false)
-        console.log('isPlay',isPlay)
+     
     }, [])
 
-    
-   
-   
-      //progress
-      const getTimerFormat = useMemo (()=>{
-        return (time: number) => {
-            const minutes = Math.floor(time / 60);
-            const seconds = Math.floor((time % 60) );         
-            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;          
-        }
-    },[]) 
-    
+  
+
+    //TimeInput handlers
+    const handleMinuteChange = useCallback((event: React.ChangeEvent < HTMLInputElement >) => {
+        let value = parseInt(event.target.value);        
+        value = Math.min(value, 720);
+        setMinutes(value);
+        setTime(seconds + value * 60)
+      }, [seconds]);
+      
+      const handleSecondChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        let value = parseInt(event.target.value);        
+        value = Math.min(value, 59); 
+        setSeconds(value);
+        setTime(minutes * 60 + value)
+      }, [ minutes]);
+
+      const handleSliderChange = useCallback((event: Event, newValue: number | number[]) => {        
+        const minute = Math.floor(+newValue / 60);
+        const second = (+newValue % 60) ;
+        setMinutes(minute);
+        setSeconds(second);
+        setTime(minute * 60 + second)
+      }, []);
+
+
     return (
       
     <StyledCounter>
         <Title>Countdown</Title> {time}
-        <TimeInput minutes={minutes} setMinutes={setMinutes} seconds={seconds} setSeconds={setSeconds} setTime = {setTime} time={time} isPlay={isPlay}/>
-        
-        {/* <ProgressTime  value={time} /> */}
-        <Box sx={{ display: 'flex', flexDirection:'column', alignItems: 'center', gap:'30px', width: '50%' }}>
-             <TimerStyled>{getTimerFormat(time)}</TimerStyled>
-            <Box sx={{ width: '100%', mr: 1 }}>
-                <LinearProgress variant="determinate" value={time ? Math.round((((minutes*60+seconds) - time) /(minutes*60+seconds)) * 100) : 0} />
-            </Box>
-            <Box sx={{ minWidth: 35 }}>
-                <Typography variant="body2" color="text.secondary">{`${time ? Math.round((((minutes*60+seconds) - time) / (minutes*60+seconds)) * 100) : 0}%`}</Typography>
-            </Box>
-        </Box>
 
-        {/* <ButtonControl/> */}
-        <ContainerItems>
-            <Button variant="contained" color="secondary" onClick={toggleTimer}>{!isPlay?<PlayArrowIcon/>:<PauseIcon/>}</Button>
-            <Button variant="contained" color="secondary" onClick={resetTimer}>Reset</Button>            
-        </ContainerItems>
+        <TimeInput minutes={minutes} seconds={seconds}  time={time} isPlay={isPlay} handleMinuteChange = {handleMinuteChange} handleSecondChange = {handleSecondChange} handleSliderChange={handleSliderChange}/>
+        
+        <ProgressTime  time={time} minutes={minutes} seconds={seconds}/>       
+
+        <ButtonControl toggleTimer={toggleTimer} resetTimer={resetTimer} isPlay={isPlay}/>
+    
         
     </StyledCounter>
     )
