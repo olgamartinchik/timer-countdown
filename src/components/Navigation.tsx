@@ -9,6 +9,7 @@ const Navigation = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center',  gap: '50px', padding: '20px'}}>
             <Link to="/">Timer</Link>
             <Link to="/countdown">Countdown</Link>
+            <Link to="/todo">TodoApp</Link>
 
          </Box>
     )

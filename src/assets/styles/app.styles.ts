@@ -41,6 +41,7 @@ export const Title = styled.h1`
   text-align: center;
   color: #BF4F74;
   text-transform: uppercase;
+  padding: 20px;
 `;
 export const StyledCounter = styled.div`
     display: flex;
