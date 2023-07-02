@@ -1,11 +1,13 @@
 import React from "react"
 import { Subtitle } from "../../assets/styles/todo.styles"
 
-
-const CountTasks = () => {
+type CountTasksProps = {
+    count: number
+}
+const CountTasks: React.FunctionComponent<CountTasksProps> = ({count}) => {
     return (
         <Subtitle>
-            <span>2</span> tasks remaining
+            <span>{count}</span> task{count <= 1 ? '' : 's'} remaining
         </Subtitle>
     )
 }

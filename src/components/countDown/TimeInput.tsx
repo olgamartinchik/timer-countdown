@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
 import { styled } from '@mui/material/styles';
 import { Slider } from '@mui/material';
 import MuiInput from '@mui/material/Input';
@@ -83,11 +82,5 @@ const TimeInput: React.FunctionComponent<PropType>  = ({minutes, seconds, time, 
     )
 
 }
-// TimeInput.propTypes = {  
 
-//   minutes: PropTypes.number,
-//   seconds: PropTypes.number,
-//   time: PropTypes.number,
-//   isPlay: PropTypes.bool,
-// }
 export default React.memo(TimeInput)
